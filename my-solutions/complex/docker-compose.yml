@@ -1,9 +1,17 @@
 version: "3"
 services:
+  nginx:
+    restart: always
+    depends_on:
+      - api
+      - client
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - "3000:80"
   postgres:
     image: "postgres:latest"
-    environment:
-      - POSTGRES_PASSWORD=postgres_password
   redis:
     image: "redis:latest"
   api:
