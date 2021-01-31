@@ -1,0 +1,15 @@
+# apiVersion scopes the type of objects we can create
+apiVersion: v1
+# kind indicates the type of object we want to make.
+# Service is about to set up networking inside our k8s clusters 
+kind: Service 
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort
+  ports:
+    - port: 3050
+      targetPort: 3000
+      nodePort: 31515
+  selector:
+    component: web
